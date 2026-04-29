@@ -1,0 +1,99 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and settings",
+      "type": "object",
+      "properties": {
+        "displayName": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "photoURL": { "type": "string" },
+        "medicationSchedule": {
+          "type": "object",
+          "properties": {
+            "weekday": { "type": "number" },
+            "time": { "type": "string" },
+            "name": { "type": "string" }
+          }
+        },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email", "createdAt"]
+    },
+    "Meal": {
+      "title": "Meal",
+      "description": "Nutritional record of a meal",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "timestamp": { "type": "number" },
+        "nutrients": {
+          "type": "object",
+          "properties": {
+            "protein": { "type": "number" },
+            "carbs": { "type": "number" },
+            "fiber": { "type": "number" },
+            "calories": { "type": "number" }
+          }
+        }
+      },
+      "required": ["name", "timestamp", "nutrients"]
+    },
+    "Medication": {
+      "title": "Medication",
+      "description": "Record of a medication dose application",
+      "type": "object",
+      "properties": {
+        "medicationName": { "type": "string" },
+        "dose": { "type": "string" },
+        "site": { "type": "string" },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["medicationName", "dose", "timestamp"]
+    },
+    "Symptom": {
+      "title": "Symptom",
+      "description": "Record of an experienced symptom",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string" },
+        "intensity": { "type": "number" },
+        "note": { "type": "string" },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["type", "intensity", "timestamp"]
+    },
+    "Weight": {
+      "title": "Weight",
+      "description": "Weight measurement record",
+      "type": "object",
+      "properties": {
+        "value": { "type": "number" },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["value", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "The user's profile document"
+    },
+    "/users/{userId}/meals/{mealId}": {
+      "schema": "Meal",
+      "description": "Collection of meal records for the user"
+    },
+    "/users/{userId}/medications/{medicationId}": {
+      "schema": "Medication",
+      "description": "Collection of medication dose records for the user"
+    },
+    "/users/{userId}/symptoms/{symptomId}": {
+      "schema": "Symptom",
+      "description": "Collection of symptom records for the user"
+    },
+    "/users/{userId}/weights/{weightId}": {
+      "schema": "Weight",
+      "description": "Collection of weight records for the user"
+    }
+  }
+}

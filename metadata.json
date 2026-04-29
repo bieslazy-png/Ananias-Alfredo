@@ -1,0 +1,6 @@
+{
+  "name": "BodyReset",
+  "description": "A health companion for weight-loss medication journeys, featuring meal tracking, medication logs, symptom monitoring, and weight progress.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
